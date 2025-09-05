@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Puppies</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Site CSS (BLOCKING) -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- JS -->
+  <script defer src="scripts.js"></script>
+</head>
+<body>
+  <!-- Hero -->
+  <header class="puppy-hero-section">
+    <div class="puppy-overlay"></div>
+    <h1 class="puppy-gradient-text">DTK PUPPIES</h1>
+  </header>
+
+  <!-- Fixed Navbar -->
+  <nav id="navbar">
+    <div class="container">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="hamburger" aria-label="Toggle menu" aria-controls="primary-menu">
+        <span class="line line--top"></span>
+        <span class="line line--middle"></span>
+        <span class="line line--bottom"></span>
+      </label>
+
+      <ul class="nav-menu" id="primary-menu">
+        <li>
+          <img src="navbarlogo.png" alt="DTKFrenchies Logo" class="nav-logo">
+          <img src="navlogohead.png" alt="Bone Logo" class="nav-small-logo nav-logo-bone">
+        </li>
+        <li><a href="/index.html" id="home-link">Home</a></li>
+        <li><a href="/index.html#about-us" id="about-link">About Us</a></li>
+        <li><a href="/puppies.html" id="puppies-link">Puppies</a></li>
+        <li><a href="/studs.html" id="studs-link">Studs</a></li>
+        <li><a href="/ourgirls.html" id="girls-link">Our Girls</a></li>
+        <li><a href="/shop.html" id="shop-link">Shop</a></li>
+        <li><a href="/contact.html" id="contact-link">Contact Us</a></li>
+        <img src="navlogobone.png" alt="Head Logo" class="nav-small-logo nav-logo-head">
+      </ul>
+    </div>
+
+    <div class="navbar-countdown" id="navbar-countdown">
+      <h3>Puppy Drop In</h3>
+      <div class="countdown" id="navbar-countdown-timer">
+        <div class="time"><span id="days-navbar">0</span><div class="label">Days</div></div>
+        <div class="time"><span id="hours-navbar">0</span><div class="label">Hours</div></div>
+        <div class="time"><span id="minutes-navbar">0</span><div class="label">Minutes</div></div>
+        <div class="time"><span id="seconds-navbar">0</span><div class="label">Seconds</div></div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="list-page">
+    <!-- Middle countdown -->
+    <section id="puppy-list" class="puppy-list">
+      <div class="middle-timer">
+        <div class="puppy-page-countdown">
+          <h3>Next Puppy Availability</h3>
+          <div class="countdown">
+            <div class="time"><span id="days-puppy">0</span><div class="label">Days</div></div>
+            <div class="time"><span id="hours-puppy">0</span><div class="label">Hours</div></div>
+            <div class="time"><span id="minutes-puppy">0</span><div class="label">Minutes</div></div>
+            <div class="time"><span id="seconds-puppy">0</span><div class="label">Seconds</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marquee -->
+      <div class="scrolling-text-container full-bleed">
+        <div class="scrolling-text-wrapper">
+          <div class="scrolling-text">
+            MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES •
+          </div>
+          <div class="scrolling-text">
+            MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES • MEET OUR PUPPIES •
+          </div>
+        </div>
+      </div>
+
+      <h2 class="available-heading">AVAILABLE Puppies</h2>
+
+      <!-- Cards -->
+      <div class="puppy-card">
+        <img src="puppybannerp.jpg" alt="Fluffy Isabella & Tan Male Frenchie" class="puppy-image">
+        <div class="puppy-info">
+          <h3>MoneyMan</h3>
+          <p>Born: June 9th 2024</p>
+          <p>Description: Beautiful fluffy Isabella & tan male, well socialized, and ready for his forever home.</p>
+          <p>Price: $2500</p>
+        </div>
+      </div>
+
+      <div class="puppy-card">
+        <img src="fluffy2.jpg" alt="Puppy 2" class="puppy-image">
+        <div class="puppy-info">
+          <h3>Puppy name</h3>
+          <p>Born: May 16th 2023</p>
+          <p>Description: really cool dog fr.</p>
+          <p>Price: $XXXX</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2025</span> DTKFrenchies. All rights reserved.</p>
+  </footer>
+</body>
+</html>

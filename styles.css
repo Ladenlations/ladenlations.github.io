@@ -1,0 +1,1173 @@
+/**********************************************/
+/*  0) RESET + iPHONE SAFE-AREA               */
+/**********************************************/
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;               /* kill subtle side-scroll on mobile */
+}
+
+@supports (padding: env(safe-area-inset-top)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/**********************************************/
+/*  1) GLOBAL & BASE STYLES                   */
+/**********************************************/
+
+/* Apply new fonts and basic resets */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 0;
+    color: #333;
+}
+
+p, a, li, span {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 10px 0;
+    color: #333;
+}
+
+.heading-link {
+    text-decoration: none;
+    color: inherit;
+    font-family: inherit;
+}
+
+
+/**********************************************/
+/*  2) TYPOGRAPHY & UTILITY CLASSES           */
+/**********************************************/
+
+/* Gradient text styles */
+.gradient-text {
+    font-size: 100px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #ffa908, #ff7403de, blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 130px 0 20px 0;
+    position: relative;
+    z-index: 2;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+/* Common background sections */
+.grey-background {
+    background-color: #e0e0e0;
+    padding: 30px 0;
+}
+
+.white-background {
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-padding {
+    padding: 40px;
+}
+
+
+/**********************************************/
+/*  3) NAVIGATION STYLES                      */
+/**********************************************/
+
+nav {
+    background: #e0e0e0;
+    color: #333;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.3s, padding 0.3s;
+    position: fixed;
+    top: 0;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav.shrink {
+    padding: 1px 0; /* Adjust padding as needed */
+    background-color: #e0e0e0; /* Ensure background color doesn't change */
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Logos in Nav */
+nav .nav-logo {
+    max-height: 50px;
+    margin-right: 10px;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+nav .nav-small-logo {
+    max-height: 30px;
+    margin: 0 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+nav.shrink .nav-logo {
+    opacity: 0;
+}
+
+nav.shrink .nav-small-logo {
+    opacity: 1;
+}
+
+nav .nav-small-logo.nav-logo-bone {
+    order: -1;
+    margin-right: -31px;
+}
+
+/* Menu toggle (mobile) */
+nav .menu-toggle {
+    display: none;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Nav Menu Items */
+nav .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    text-align: center;
+}
+
+nav .nav-menu li {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+nav .nav-menu li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: color 0.3s;
+    position: relative; /* Required for underline */
+}
+
+/* Add styles for the active page */
+nav .nav-menu li a.active {
+    font-weight: bold;
+    color: #292525; 
+}
+
+/* Underline effect on hover */
+nav .nav-menu li a::after {
+    content: '';
+    position: absolute;
+    left: 50%; /* Center the underline */
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: width 0.3s, background-color 0.3s;
+}
+
+nav .nav-menu li a:hover::after {
+    width: 100%;
+    background-color: inherit; 
+}
+
+nav .nav-menu li a:hover {
+    color: #fff; 
+}
+
+/* Blue highlight for items 1-5 */
+nav .nav-menu li:nth-child(1) a:hover::after,
+nav .nav-menu li:nth-child(2) a:hover::after,
+nav .nav-menu li:nth-child(3) a:hover::after,
+nav .nav-menu li:nth-child(4) a:hover::after,
+nav .nav-menu li:nth-child(5) a:hover::after {
+    background-color: blue;
+}
+
+/* Orange highlight for items 6-8 */
+nav .nav-menu li:nth-child(6) a:hover::after,
+nav .nav-menu li:nth-child(7) a:hover::after,
+nav .nav-menu li:nth-child(8) a:hover::after {
+    background-color: orange;
+}
+
+/* Additional styling for nav-logo positioning and visibility */
+nav .nav-menu li img.nav-logo {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+nav.shrink .nav-menu li img.nav-logo {
+    opacity: 0; /* Hide the main logo on scroll */
+}
+
+nav .nav-menu li img.nav-logo-head {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+nav.shrink .nav-menu li img.nav-logo-head {
+    opacity: 1; /* Show the head logo on scroll */
+}
+
+/* Adjust underline for first item ("Home") if needed */
+nav .nav-menu li:nth-child(1) a::after {
+    bottom: -2px;
+}
+
+
+/**********************************************/
+/*  4) HERO SECTIONS (MAIN, PUPPIES, STUDS,   */
+/*     GIRLS, SHOP, ETC.)                     */
+/**********************************************/
+
+/* Main Hero */
+.hero-section {
+    background-image: url('asset3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    height: 85vh;
+}
+
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-button {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+.hero-button:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Puppies Hero */
+.puppy-hero-section {
+    background-image: url('puppybanner2p.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.puppy-hero-section .puppy-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.puppy-hero-section h1.puppy-gradient-text {
+    z-index: 2;
+    font-size: 100px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+/* Studs Hero */
+.stud-hero-section {
+    background-image: url('cashyboy\\ 2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.stud-hero-section .stud-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.stud-hero-section h1.stud-gradient-text {
+    z-index: 2;
+    font-size: 100px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+/* Girls Hero */
+.girls-hero-section {
+    background-image: url('asset2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.girls-hero-section .girls-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.girls-hero-section h1.girls-gradient-text {
+    z-index: 2;
+    font-size: 100px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+/* Shop Hero */
+.shop-hero-section {
+    background-image: url('assetg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.shop-hero-section .girls-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.shop-hero-section h1.shop-gradient-text {
+    z-index: 2;
+    font-size: 100px;
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+
+/**********************************************/
+/*  5) COUNTDOWN TIMERS                       */
+/**********************************************/
+
+/* ------------------------------------------ */
+/* A) NAVBAR COUNTDOWN (Light Background)     */
+/* ------------------------------------------ */
+
+.nav .container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+    position: relative;
+}
+
+.navbar-countdown {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333;
+    font-size: 14px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  
+  .navbar-countdown h3 {
+    font-size: 1rem;
+    margin-right: 15px;
+  }
+  
+  .navbar-countdown .countdown {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .navbar-countdown .countdown .time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 40px;
+  }
+  
+  .navbar-countdown .countdown .time span {
+    font-size: 1rem;
+    color: #0080ff;
+  }
+  
+  .navbar-countdown .countdown .time .label {
+    font-size: 0.8rem;
+    color: #333;
+  }
+  
+  /* Medium screen tweaks */
+  @media (max-width: 1024px) {
+    .navbar-countdown {
+      padding: 8px 15px;
+    }
+  
+    .navbar-countdown h3 {
+      font-size: 0.9rem;
+      margin-right: 10px;
+    }
+  
+    .navbar-countdown .countdown {
+      gap: 10px;
+    }
+  
+    .navbar-countdown .countdown .time span {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Mobile view - inside menu */
+  @media (max-width: 768px) {
+    .navbar-countdown {
+      position: static;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px auto 0;
+      width: 90%;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+    }
+  
+    nav .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1001;
+    }
+  
+    .nav-menu {
+      flex-direction: column;
+      padding-top: 60px;
+      align-items: center;
+    }
+  }
+  
+/* ------------------------------------------ */
+/* D) PUPPY PAGE COUNTDOWN (MIDDLE TIMER)     */
+/* ------------------------------------------ */
+.middle-timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-top: -14px;
+}
+
+.puppy-page-countdown {
+    text-align: center;
+}
+
+.puppy-page-countdown h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.puppy-page-countdown .countdown {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.puppy-page-countdown .countdown .time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.puppy-page-countdown .countdown .time span {
+    font-size: 2rem;
+    color: #0080ff;
+}
+
+.puppy-page-countdown .countdown .time .label {
+    font-size: 1rem;
+    color: #333;
+}
+
+/**********************************************/
+/*  7) SECTION & LAYOUT STYLES               */
+/**********************************************/
+
+main {
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* Section container styles */
+.about-container, .section-container, .shop-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.about-logo-container, .section-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-logo, .akc-logo, .payment-logo, .shipping-logo {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 20px;
+}
+
+/* Section content styles */
+.about-content, .section-content {
+    flex: 1;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.about-content h2, .section-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.section-content h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-content p, .section-content p {
+    font-size: 1.25rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+
+/**********************************************/
+/*  8) CAROUSEL STYLES                        */
+/**********************************************/
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.carousel-indicator.current-slide {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+
+/**********************************************/
+/*  9) SCROLLING TEXT                          */
+/**********************************************/
+
+.scrolling-text-container {
+    width: 100%;
+    overflow: hidden;
+    background: #e0e0e0;
+    position: relative;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.scrolling-text-wrapper {
+    display: flex;
+    white-space: nowrap;
+}
+
+.scrolling-text {
+    display: inline-block;
+    font-size: 2rem;
+    color: #ffa908;
+    animation: scroll-left 10s linear infinite;
+}
+
+
+/**********************************************/
+/* 10) SPECIFIC PAGE CONTENT (e.g. Puppies)   */
+/**********************************************/
+
+.available-heading {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+/* Puppy List Section */
+.puppy-list {
+    padding: 25px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.puppy-list h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #333;
+}
+
+.puppy-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.puppy-image {
+    flex: 1;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.puppy-info {
+    flex: 2;
+    padding: 20px;
+    text-align: left;
+}
+
+.puppy-info h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.puppy-info p {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+
+/**********************************************/
+/* 11) SHOP CONTAINER                          */
+/**********************************************/
+
+.shop-container {
+    text-align: center;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+
+/* === Footer colors (force white text/links) === */
+footer {
+    background: #333;          /* keep your dark footer background */
+    color: #fff !important;    /* make default footer text white */
+    text-align: center;
+  }
+  
+  footer p,
+  footer a,
+  footer span,
+  footer li {
+    color: #fff !important;    /* override global #333 */
+  }
+  
+  footer a:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+  }
+
+
+/**********************************************/
+/* 13) KEYFRAME ANIMATIONS                    */
+/**********************************************/
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+/**********************************************/
+/* 14) RESPONSIVE MEDIA QUERIES               */
+/**********************************************/
+
+/* Mobile Devices (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+
+    .hero-section {
+        height: 70vh;
+        padding: 50px 10px;
+    }
+
+    .hero-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        margin: 10px;
+    }
+
+    /* Hide main nav menu on mobile by default */
+    nav .nav-menu {
+        display: none;
+        flex-direction: column;
+    }
+
+    nav .menu-toggle {
+        display: block; /* Show toggle menu icon */
+    }
+
+    nav .nav-menu.show {
+        display: flex; /* Show menu when toggled */
+    }
+
+    .puppy-card {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .puppy-image {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .carousel-container {
+        max-width: 100%;
+    }
+}
+
+/* Tablet Devices (768px to 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    body {
+        font-size: 16px;
+    }
+
+    .hero-section {
+        height: 75vh;
+    }
+
+    .hero-button {
+        padding: 15px 25px;
+        font-size: 16px;
+    }
+
+    .puppy-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 15px;
+    }
+
+    .puppy-image {
+        width: 50%;
+    }
+
+    .carousel-container {
+        max-width: 90%;
+    }
+}
+
+/* Laptop Devices (1024px to 1439px) */
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    body {
+        font-size: 18px;
+    }
+
+    .hero-section {
+        height: 85vh;
+    }
+
+    .puppy-card {
+        padding: 20px;
+    }
+
+    .carousel-container {
+        max-width: 80%;
+    }
+}
+
+/* Larger Screens (1440px and above) */
+@media only screen and (min-width: 1440px) {
+    body {
+        font-size: 20px;
+    }
+
+    .hero-section {
+        height: 90vh;
+    }
+
+    .puppy-card {
+        padding: 30px;
+    }
+
+    .carousel-container {
+        max-width: 70%;
+    }
+}
+/* ===== Fit the big DTKFRENCHIES title like the buttons ===== */
+
+/* === Bigger—but still fits—DTKFRENCHIES title === */
+.hero-section {
+    /* existing background */
+    background-image: url('asset3.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  
+    color: #fff;
+    text-align: center;
+  
+    position: relative;
+    min-height: 85vh;                 /* keep a tall hero */
+    display: flex;                    /* lay out children vertically */
+    flex-direction: column;
+    justify-content: flex-start;      /* <-- push content to the TOP */
+    align-items: center;
+  
+    /* space down from the fixed navbar, but not too far */
+    padding: clamp(80px, 12vh, 140px) 20px 12vh;
+  }
+  
+  
+  .gradient-text {
+    /* fluid size so it still shrinks on small screens */
+    font-size: clamp(44px, 12vw, 120px);
+    font-weight: 700;
+  
+    background: linear-gradient(90deg, #ffa908, #ff7403de, blue);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    /* remove the big top margin that was pushing it to the middle */
+    margin: 0 0 16px 0;
+  
+    position: relative;
+    z-index: 2;
+    text-shadow:
+      -1px -1px 0 #fff,
+       1px -1px 0 #fff,
+      -1px  1px 0 #fff,
+       1px  1px 0 #fff;
+  }
+  
+  /* phone: larger than before, but guaranteed to fit */
+  @media (max-width: 767px) {
+    .hero-section {
+      padding-top: clamp(72px, 14vh, 120px);
+      padding-bottom: 10vh;
+    }
+  }
+  
+/* ==== HAMBURGER: 3 thin lines that don't move ==== */
+
+/* hide old text hamburger if any */
+.menu-toggle { display: none !important; }
+
+/* checkbox keeps state */
+.nav-toggle { display: none; }
+
+/* the button itself — fixed in one place */
+.hamburger{
+  position: fixed;
+  top: 12px;                 /* stays put here */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1002;
+  width: 44px;
+  height: 44px;
+  display: block;
+  cursor: pointer;
+}
+
+/* three lines */
+.hamburger .line{
+  /* kill the global span padding that made the blocks */
+  padding: 0 !important;
+  margin: 0 !important;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);   /* keep centered */
+  width: 28px;
+  height: 3px;
+  background: #333;              /* change to #fff if you want white bars */
+  border-radius: 3px;
+  display: block;
+  transition: transform .25s ease, opacity .25s ease;
+}
+
+/* line positions (button does not move) */
+.hamburger .line--top    { top: 14px; }
+.hamburger .line--middle { top: 21px; }
+.hamburger .line--bottom { top: 28px; }
+
+/* show mobile menu when checked */
+@media (max-width: 768px){
+  nav .nav-menu{
+    display: none;
+    flex-direction: column;
+    padding-top: 60px;
+    align-items: center;
+  }
+  #nav-toggle:checked ~ .nav-menu{ display: flex; }
+}
+
+/* turn the 3 lines into an X (button itself stays put) */
+#nav-toggle:checked + .hamburger .line--top{
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+#nav-toggle:checked + .hamburger .line--middle{
+  opacity: 0;
+}
+#nav-toggle:checked + .hamburger .line--bottom{
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* show hamburger only on small screens */
+@media (min-width: 769px) {
+    .hamburger { display: none !important; }   /* hide on tablet/desktop */
+  }
+  
+  @media (max-width: 768px) {
+    .hamburger { display: block !important; }  /* ensure visible on phones */
+  }
+  
+  /* utility: make a row span the full viewport width, ignoring parent width */
+.full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%); /* centers the 100vw row */
+  }
+  
+  /* optional: avoid any stray horizontal scrollbars */
+  html, body { overflow-x: hidden; }
+
+  /* Tighten the empty space above "NEXT PUPPY AVAILABILITY" on Puppies page */
+/* Halves the original ~23px net gap to ~11px */
+.puppy-list {               /* was 50px */
+    padding-top: 10px;
+  }
+  .middle-timer {             /* was -27px */
+    margin-top: -5px;
+  }
+  
+  /* Small screens: keep it comfy */
+  @media (max-width: 768px){
+    .puppy-list { padding-top: 20px; }
+    .middle-timer { margin-top: -10px; }
+  }
+  
