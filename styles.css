@@ -1170,4 +1170,12 @@ footer {
     .puppy-list { padding-top: 20px; }
     .middle-timer { margin-top: -10px; }
   }
+/* =========================================================
+   MARQUEE (scrolling text) – base styles (JS handles animation)
+   ========================================================= */
+   .scrolling-text-container { overflow: hidden; }
+   .scrolling-text-wrapper {
+     display: flex;
+     white-space: nowrap;
+   }
   
